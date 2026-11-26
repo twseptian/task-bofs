@@ -1,0 +1,139 @@
+{
+  "name": "privkit",
+  "version": "1.0.0",
+  "extension_author": "twseptian",
+  "original_author": "PrivKit upstream authors / nukeratframework armory",
+  "repo_url": "https://github.com/nukeratframework/armory",
+  "commands": [
+    {
+      "command_name": "priv-alwaysinstall",
+      "help": "Checks AlwaysInstallElevated policy (HKCU+HKLM set to 1) - MSI install-elevation opportunity",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/AlwaysInstallElevatedCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-autologon",
+      "help": "Checks registry for stored autologon credentials (DefaultUserName/DefaultPassword)",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/AutoLogonCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-credman",
+      "help": "Enumerates stored Windows Credential Manager entries",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/CredentialManagerCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-hijackable",
+      "help": "Checks PATH entries writable by the current user (PATH hijack opportunity)",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/HijackablePathCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-autorun",
+      "help": "Checks autorun locations writable by the current user",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/ModifiableAutorunCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-svcmod",
+      "help": "Checks services whose config or binary is modifiable by the current user",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/ModifiableSVCCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-pshist",
+      "help": "Reads PowerShell console history (ConsoleHost_history.txt)",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/PowerShellHistoryCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-tokenprivs",
+      "help": "Lists current token privileges - presence/enabled state of SeDebug, SeImpersonate, SeLoadDriver etc.",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/TokenPrivilegesCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-uacstatus",
+      "help": "Reports UAC configuration (EnableLUA, ConsentPromptBehaviorAdmin) and current process integrity level",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/UACStatusCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "priv-unquotedsvc",
+      "help": "Checks for unquoted service paths with spaces",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/UnquotedSVCPathCheck.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    }
+  ]
+}

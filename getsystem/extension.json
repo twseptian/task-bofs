@@ -1,0 +1,23 @@
+{
+  "name": "getsystem-bof",
+  "version": "1.0.0",
+  "extension_author": "twseptian",
+  "original_author": "CS-BOFs get-system upstream authors",
+  "repo_url": "https://github.com/nukeratframework/armory",
+  "commands": [
+    {
+      "command_name": "bof-getsystem",
+      "help": "Control-test BOF: duplicates the winlogon token to get SYSTEM. Requires an admin token - EXPECTED TO FAIL for standard users (use it to prove host hardening, not as an elevation tool)",
+      "long_help": "CS-BOFs get-system: finds winlogon.exe, enables SeDebug, duplicates its token and starts cmd.exe with it. Requires SeDebugPrivilege - a standard user does not have it, so this is designed as a control test on hardened hosts: expect an access/error on standard-user beacons, success on elevated admin beacons.",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/getsystem.x64.o"
+        }
+      ],
+      "arguments": [],
+      "entrypoint": "go"
+    }
+  ]
+}
