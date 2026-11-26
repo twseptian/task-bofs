@@ -1,0 +1,25 @@
+{
+  "name": "taskenum",
+  "version": "1.0.0",
+  "extension_author": "twseptian",
+  "original_author": "twseptian",
+  "repo_url": "",
+  "commands": [
+    {
+      "command_name": "taskenum",
+      "help": "List scheduled tasks, flag user-owned (SID-suffixed) ones",
+      "long_help": "schtasks /query /fo csv /v captured in-process (no cmd.exe). Default: one detail block per user-owned task (name contains a machine SID suffix -S-1-5-21-...); those are owned by the current account and can be modified/run by it. -full 1: compact one-line table of all tasks, candidates marked '>>>'. No elevation needed.",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/taskenum.x64.o"
+        }
+      ],
+      "arguments": [
+        { "name": "full", "type": "int", "desc": "1 = one-line table of all tasks; 0 = detail blocks of candidates", "optional": true }
+      ],
+      "entrypoint": "go"
+    }
+  ]
+}

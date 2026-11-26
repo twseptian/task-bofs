@@ -1,0 +1,44 @@
+{
+  "name": "tasksuite",
+  "version": "1.0.0",
+  "extension_author": "twseptian",
+  "original_author": "twseptian",
+  "repo_url": "",
+  "commands": [
+    {
+      "command_name": "taskhijack",
+      "help": "Update a scheduled task: back up XML, swap action, optional stored credential, kill stale instance, run",
+      "long_help": "1) dumps the task XML to console + %TEMP%\\bof-<task>-orig.xml, 2) schtasks /change /tr (+ /rp merged when -pw is given - a spaced /tr otherwise triggers a run-as password prompt), 3) taskkill on the old action image from the backup XML (stale instance blocks /run via IgnoreNew), 4) schtasks /run. InteractiveToken tasks run with a UAC-filtered token; /rp with the owner's password removes the filter (no elevation for non-admin users). Console: double backslashes, quote spaced values, avoid inner quotes - point -cmd at an uploaded script. Restore with taskrestore.",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/taskhijack.x64.o"
+        }
+      ],
+      "arguments": [
+        { "name": "task", "type": "string", "desc": "Task name including folder", "optional": false },
+        { "name": "cmd",  "type": "string", "desc": "New action path (double backslashes in console)", "optional": false },
+        { "name": "args", "type": "string", "desc": "Appended after cmd inside the /tr quotes", "optional": true },
+        { "name": "pw",   "type": "string", "desc": "Owner's current password for /rp; required for spaced -cmd/-args values; empty = skip /rp", "optional": true }
+      ],
+      "entrypoint": "go"
+    },
+    {
+      "command_name": "taskrestore",
+      "help": "Restore a task from the %TEMP% XML backup written by taskhijack",
+      "long_help": "schtasks /create /tn <task> /xml <backup> /f, then deletes the backup. Re-registering from the original XML also removes any stored credential (/rp). Verify: schtasks /query /tn <task> /xml shows the original action and no <Password> element.",
+      "files": [
+        {
+          "os": "windows",
+          "arch": "amd64",
+          "path": "/taskrestore.x64.o"
+        }
+      ],
+      "arguments": [
+        { "name": "task", "type": "string", "desc": "Task name including folder (same value used with taskhijack)", "optional": false }
+      ],
+      "entrypoint": "go"
+    }
+  ]
+}
